@@ -6,8 +6,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Workout extends ActionBarActivity {
@@ -18,12 +24,14 @@ public class Workout extends ActionBarActivity {
     Button wEnd;
     TextView displayTaps;
     TextView displayResult;
+    ListView displayHistory;
     int newIndex = -1;
     int tapCount;
     int[] score = new int[5];
     boolean flag = false;
     String displayTapsString;
     String displayResultString;
+    ArrayList<String> tempList;
 
 
     @Override
@@ -40,19 +48,32 @@ public class Workout extends ActionBarActivity {
         wEnd = (Button) findViewById(R.id.endWorkoutButton);
         displayTaps = (TextView) findViewById(R.id.displayTaps);
         displayResult = (TextView) findViewById(R.id.displayResult);
+        displayHistory = (ListView) findViewById(R.id.displayHistoryList);
+
+        //disable tap by default
+        wTap.setEnabled(false);
+
+        //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, pullup.setHistoryList());
+        //displayHistory.setAdapter(historyAdapter);
+        tempList = pullup.setHistoryList();
+        final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, tempList);
+        displayHistory.setAdapter(historyAdapter);
 
 
         wTap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tapCount++; // increment based on number of taps
-                pullup.updateSetAt(newIndex, tapCount);
-                displayTapsString = pullup.displaySets();
+                pullup.updateSetAt(newIndex, tapCount); // add taps to current set
+                displayTapsString = pullup.displaySets(); // shows reps inside sets
                 displayTaps.setText(displayTapsString); // should be displayTapsString string
+
                 Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
 
+                // prints above log to screen
                 displayResultString = pullup.toString();
                 displayResult.setText(displayResultString);
+
             }
         });
 
@@ -65,6 +86,11 @@ public class Workout extends ActionBarActivity {
                 displayTapsString = "NEW SET!";
                 displayTaps.setText(displayTapsString);
 
+                //enable tap button
+                wTap.setEnabled(true);
+
+                //populate list
+                tempList = pullup.setHistoryList();
 
             }
 

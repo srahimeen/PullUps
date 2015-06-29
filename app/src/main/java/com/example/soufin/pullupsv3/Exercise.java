@@ -1,6 +1,7 @@
 package com.example.soufin.pullupsv3;
 
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import com.example.soufin.pullupsv3.Sets;
@@ -65,6 +66,11 @@ public class Exercise {
         return output;
     }
 
+    public ArrayList<String> setHistoryList(){
+        ArrayList<String> historyList = new ArrayList<String>();
+        historyList.add(this.toString());
+        return historyList;
+    }
 
 
 
