@@ -28,10 +28,9 @@ public class Exercise {
     //getter
     public List getSets() {return this._sets; }
     // setter
-   public void setSets(int reps){
-       Sets tempSet = new Sets();
-       tempSet.setReps(reps);
-       this._sets.add(tempSet);
+   public void addSet(){
+       Sets temp = new Sets();
+       this._sets.add(temp);
    }
 
     public String displaySets() {
@@ -43,6 +42,15 @@ public class Exercise {
         }
 
         return displaySet;
+
+    }
+
+    public void updateSetAt(int index, int reps){
+
+        //this._sets.get(index).setReps(reps);
+        Sets temp = this._sets.get(index);
+        temp.setReps(reps);
+        this._sets.set(index, temp);
 
     }
 
