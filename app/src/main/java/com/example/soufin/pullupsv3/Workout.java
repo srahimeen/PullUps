@@ -6,16 +6,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.TextView;
-import android.R.*;
-
-import com.example.soufin.pullupsv3.Sets;
-import com.example.soufin.pullupsv3.Exercise;
-
-import org.w3c.dom.Text;
-
 
 
 public class Workout extends ActionBarActivity {
@@ -24,12 +16,16 @@ public class Workout extends ActionBarActivity {
     Button wNew;
     Button wTap;
     Button wEnd;
-    TextView displayText;
+    TextView displayTaps;
+    TextView displayResult;
     int newIndex = -1;
     int tapCount;
     int[] score = new int[5];
     boolean flag = false;
-    String result;
+    String displayTapsString;
+    String displayResultString;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +33,13 @@ public class Workout extends ActionBarActivity {
 
         pullup = new Exercise();
         pullup.setName("Pullup");
-        result = "Untapped";
+        displayTapsString = "Untapped";
 
         wNew = (Button) findViewById(R.id.newSetButton);
         wTap = (Button) findViewById(R.id.tapButton);
         wEnd = (Button) findViewById(R.id.endWorkoutButton);
-        displayText = (TextView) findViewById(R.id.displayScore);
-
+        displayTaps = (TextView) findViewById(R.id.displayTaps);
+        displayResult = (TextView) findViewById(R.id.displayResult);
 
 
         wTap.setOnClickListener(new View.OnClickListener() {
@@ -51,9 +47,12 @@ public class Workout extends ActionBarActivity {
             public void onClick(View v) {
                 tapCount++; // increment based on number of taps
                 pullup.updateSetAt(newIndex, tapCount);
-                result = pullup.displaySets();
-                displayText.setText(result); // should be result string
+                displayTapsString = pullup.displaySets();
+                displayTaps.setText(displayTapsString); // should be displayTapsString string
                 Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
+
+                displayResultString = pullup.toString();
+                displayResult.setText(displayResultString);
             }
         });
 
@@ -63,12 +62,13 @@ public class Workout extends ActionBarActivity {
                 newIndex += 1;
                 pullup.addSet();
                 tapCount = 0;
-                result = "NEW SET!";
-                displayText.setText(result);
+                displayTapsString = "NEW SET!";
+                displayTaps.setText(displayTapsString);
+
+
             }
 
         });
-
 
     }
 

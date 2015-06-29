@@ -75,8 +75,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/displayScore"
+        android:id="@+id/displayTaps"
         android:layout_above="@+id/tapForRepsLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="44dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/displayResult"
+        android:layout_below="@+id/newPullupLabel"
+        android:layout_marginTop="32dp"
+        android:layout_alignRight="@+id/endWorkoutLabel"
+        android:layout_alignEnd="@+id/endWorkoutLabel" />
 </RelativeLayout>
