@@ -31,7 +31,7 @@ public class Workout extends ActionBarActivity {
     boolean flag = false;
     String displayTapsString;
     String displayResultString;
-    ArrayList<String> tempList;
+    //ArrayList<String> tempList;
 
 
     @Override
@@ -55,9 +55,9 @@ public class Workout extends ActionBarActivity {
 
         //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, pullup.setHistoryList());
         //displayHistory.setAdapter(historyAdapter);
-        tempList = pullup.setHistoryList();
-        final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, tempList);
-        displayHistory.setAdapter(historyAdapter);
+        //tempList = pullup.setHistoryList();
+        //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, tempList);
+        //displayHistory.setAdapter(historyAdapter);
 
 
         wTap.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,11 @@ public class Workout extends ActionBarActivity {
                 wTap.setEnabled(true);
 
                 //populate list
-                tempList = pullup.setHistoryList();
+               // tempList.add(newIndex, pullup.getSets().toString());
+                for (String str : pullup.setHistoryList()){
+                    Log.v("HISTORY :", str);
+                }
+
 
             }
 
