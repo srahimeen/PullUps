@@ -44,28 +44,27 @@ public class Workout extends ActionBarActivity {
 
 
 
+        wTap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tapCount += 1; // increment based on number of taps
+                displayText.setText(result);
+            }
+        });
+
         wNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Sets tempSet = new Sets(); // create new Set on click of mNew
+                Sets tempSet = new Sets(); // create new Set on click of mNew
 
-                wTap.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tapCount += 1; // increment based on number of taps
-                    }
-                });
-
-                //tempSet.setReps(tapCount);
+                tempSet.setReps(tapCount);
                 pullup.setSets(tapCount); // add Set with reps (by taps) into List in Exercise
                 result = pullup.displaySets();
-
-
+                tapCount = 0;
             }
 
         });
-        displayText.setText(result);
 
 
     }
