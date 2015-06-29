@@ -26,7 +26,7 @@ public class Workout extends ActionBarActivity {
     Button wEnd;
     TextView displayText;
     int newIndex = -1;
-    int tapCount = 0;
+    int tapCount;
     int[] score = new int[5];
     boolean flag = false;
     String result;
@@ -37,7 +37,7 @@ public class Workout extends ActionBarActivity {
 
         pullup = new Exercise();
         pullup.setName("Pullup");
-        result = "0";
+        result = "Untapped";
 
         wNew = (Button) findViewById(R.id.newSetButton);
         wTap = (Button) findViewById(R.id.tapButton);
@@ -49,11 +49,11 @@ public class Workout extends ActionBarActivity {
         wTap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tapCount += 1; // increment based on number of taps
-                displayText.setText(result); // should be result string
+                tapCount++; // increment based on number of taps
                 pullup.updateSetAt(newIndex, tapCount);
                 result = pullup.displaySets();
-                Log.v("TRACK :", pullup.toString());
+                displayText.setText(result); // should be result string
+                Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
             }
         });
 
@@ -62,7 +62,9 @@ public class Workout extends ActionBarActivity {
             public void onClick(View v) {
                 newIndex += 1;
                 pullup.addSet();
-                tapCount = -1;
+                tapCount = 0;
+                result = "NEW SET!";
+                displayText.setText(result);
             }
 
         });

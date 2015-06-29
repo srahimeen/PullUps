@@ -6,7 +6,7 @@ package com.example.soufin.pullupsv3;
 public class Sets {
 
    // private int _id;
-    private int _reps;
+    private int _reps = 0;
 
     //constructor
     //Sets(int reps) {
@@ -25,7 +25,7 @@ public class Sets {
     }
 
     public String displayReps() {
-        String reps = Integer.toString(this._reps);
+        String reps = Integer.toString(this.getReps());
 
         return reps;
 
