@@ -54,6 +54,17 @@ public class Exercise {
 
     }
 
+    public String toString() {
+        String output = "Empty";
+        int count = -1;
+        for (Sets set : this._sets){
+            count++;
+            output =  "SET : " + Integer.toString(count) + " REPS : " + set.toString();
+        }
+
+        return output;
+    }
+
 
 
 

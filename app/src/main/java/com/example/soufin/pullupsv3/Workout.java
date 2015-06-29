@@ -2,6 +2,7 @@ package com.example.soufin.pullupsv3;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +25,8 @@ public class Workout extends ActionBarActivity {
     Button wTap;
     Button wEnd;
     TextView displayText;
-    int newIndex = 0;
-    int tapCount;
+    int newIndex = -1;
+    int tapCount = 0;
     int[] score = new int[5];
     boolean flag = false;
     String result;
@@ -36,6 +37,7 @@ public class Workout extends ActionBarActivity {
 
         pullup = new Exercise();
         pullup.setName("Pullup");
+        result = "0";
 
         wNew = (Button) findViewById(R.id.newSetButton);
         wTap = (Button) findViewById(R.id.tapButton);
@@ -48,9 +50,10 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 tapCount += 1; // increment based on number of taps
-                displayText.setText(Integer.toString(tapCount)); // should be result string
+                displayText.setText(result); // should be result string
                 pullup.updateSetAt(newIndex, tapCount);
                 result = pullup.displaySets();
+                Log.v("TRACK :", pullup.toString());
             }
         });
 
@@ -59,7 +62,7 @@ public class Workout extends ActionBarActivity {
             public void onClick(View v) {
                 newIndex += 1;
                 pullup.addSet();
-                tapCount = 0;
+                tapCount = -1;
             }
 
         });

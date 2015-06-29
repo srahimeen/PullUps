@@ -31,4 +31,8 @@ public class Sets {
 
     }
 
+    public String toString() {
+        return Integer.toString(_reps);
+    }
+
 }
