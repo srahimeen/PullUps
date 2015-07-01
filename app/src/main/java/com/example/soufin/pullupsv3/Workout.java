@@ -22,7 +22,6 @@ public class Workout extends ActionBarActivity {
     Button wTap;
     Button wEnd;
     TextView displayTaps;
-    TextView displayResult;
     ListView displayHistory;
     static int newIndex = -1;
     int tapCount =1;
@@ -47,7 +46,6 @@ public class Workout extends ActionBarActivity {
         wTap = (Button) findViewById(R.id.tapButton);
         wEnd = (Button) findViewById(R.id.endWorkoutButton);
         displayTaps = (TextView) findViewById(R.id.displayTaps);
-        displayResult = (TextView) findViewById(R.id.displayResult);
         displayHistory = (ListView) findViewById(R.id.displayHistoryList);
 
 
@@ -81,13 +79,14 @@ public class Workout extends ActionBarActivity {
                     pullup.updateSetAt(newIndex, tapCount); // add taps to current set
 
                 displayTapsString = pullup.displaySets(); // shows reps inside sets
-                    displayTaps.setText(displayTapsString); // should be displayTapsString string
+                displayTaps.setText(displayTapsString); // should be displayTapsString string
+
+                wTap.setText(Integer.toString(tapCount));
 
                 Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
 
                     // prints above log to screen
                     displayResultString = pullup.toString();
-                    displayResult.setText(displayResultString);
 
 
             }
@@ -106,6 +105,7 @@ public class Workout extends ActionBarActivity {
                     tapCount = 0;
                     displayTapsString = "NEW SET!";
                     displayTaps.setText(displayTapsString);
+                    wTap.setText(Integer.toString(tapCount));
 
                     //enable tap button
                     wTap.setEnabled(true);
