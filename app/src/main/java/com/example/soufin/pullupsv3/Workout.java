@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.R.*;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,6 @@ public class Workout extends ActionBarActivity {
     Button wNew;
     Button wTap;
     Button wEnd;
-    TextView displayTaps;
     ListView displayHistory;
     static int newIndex = -1;
     int tapCount =1;
@@ -45,7 +45,6 @@ public class Workout extends ActionBarActivity {
         wNew = (Button) findViewById(R.id.newSetButton);
         wTap = (Button) findViewById(R.id.tapButton);
         wEnd = (Button) findViewById(R.id.endWorkoutButton);
-        displayTaps = (TextView) findViewById(R.id.displayTaps);
         displayHistory = (ListView) findViewById(R.id.displayHistoryList);
 
 
@@ -79,7 +78,6 @@ public class Workout extends ActionBarActivity {
                     pullup.updateSetAt(newIndex, tapCount); // add taps to current set
 
                 displayTapsString = pullup.displaySets(); // shows reps inside sets
-                displayTaps.setText(displayTapsString); // should be displayTapsString string
 
                 wTap.setText(Integer.toString(tapCount));
 
@@ -104,7 +102,6 @@ public class Workout extends ActionBarActivity {
                     pullup.addSet();
                     tapCount = 0;
                     displayTapsString = "NEW SET!";
-                    displayTaps.setText(displayTapsString);
                     wTap.setText(Integer.toString(tapCount));
 
                     //enable tap button

@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.soufin.pullupsv2.Workout"
-    android:id="@+id/">
+    android:id="@+id/display">
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,14 +72,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/displayTaps"
-        android:layout_above="@+id/tapForRepsLabel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -87,6 +79,6 @@
         android:id="@+id/displayHistoryList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/displayTaps"
-        android:layout_below="@+id/newPullupLabel" />
+        android:layout_below="@+id/newPullupLabel"
+        android:layout_above="@+id/tapForRepsLabel" />
 </RelativeLayout>
