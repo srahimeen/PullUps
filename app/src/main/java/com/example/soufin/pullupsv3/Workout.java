@@ -8,13 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Workout extends ActionBarActivity {
@@ -26,13 +24,13 @@ public class Workout extends ActionBarActivity {
     TextView displayTaps;
     TextView displayResult;
     ListView displayHistory;
-    int newIndex = -1;
+    static int newIndex = -1;
     int tapCount =1;
     int[] score = new int[5];
     boolean flag = false;
     String displayTapsString;
     String displayResultString;
-    //ArrayList<String> tempList;
+    ArrayList<String> tempList = new ArrayList<String>();
     Toast pleaseTap;
 
 
@@ -52,16 +50,29 @@ public class Workout extends ActionBarActivity {
         displayResult = (TextView) findViewById(R.id.displayResult);
         displayHistory = (ListView) findViewById(R.id.displayHistoryList);
 
-        //disable tap by default
-        wTap.setEnabled(false);
 
-        //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, pullup.setHistoryList());
+
+        //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, pullup.getHistoryList());
         //displayHistory.setAdapter(historyAdapter);
-        //tempList = pullup.setHistoryList();
+        //tempList = pullup.getHistoryList();
         //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, tempList);
         //displayHistory.setAdapter(historyAdapter);
 
+        final ArrayAdapter<Sets> arrayAdapter = new ArrayAdapter<Sets>(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                pullup.getSets()
+        );
 
+       // displayHistory.setVisibility((pullup.getSets() == null) ? View.GONE : View.VISIBLE);
+
+
+
+        //displayHistory.setAdapter(arrayAdapter);
+
+        //disable tap by default
+        wTap.setEnabled(false);
+        //tap button
         wTap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +83,7 @@ public class Workout extends ActionBarActivity {
                 displayTapsString = pullup.displaySets(); // shows reps inside sets
                     displayTaps.setText(displayTapsString); // should be displayTapsString string
 
-                    Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
+                Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
 
                     // prints above log to screen
                     displayResultString = pullup.toString();
@@ -81,7 +92,9 @@ public class Workout extends ActionBarActivity {
 
             }
         });
+        //tap button end
 
+        //new button
         wNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,10 +111,28 @@ public class Workout extends ActionBarActivity {
                     wTap.setEnabled(true);
 
                     //populate list
-                    // tempList.add(newIndex, pullup.getSets().toString());
-                    for (String str : pullup.setHistoryList()) {
+                    // tempList.add(newIndex, pullup.getSets().toNumericString());
+                    for (String str : pullup.getHistoryList()) {
                         Log.v("HISTORY :", str);
+
                     }
+
+                    //int count = -1;
+                    //for (Sets sets : pullup.getSets()){
+                    //    count++;
+                    //    tempList.add(count, sets.toNumericString());
+                    //}
+
+                    //tempList.add(newIndex, pullup.toNumericString());
+
+                    displayHistory.setAdapter(arrayAdapter);
+
+                    //for (String str : tempList) {
+                    //    Log.v("TEMPLIST :", str);
+                    //}
+
+
+
                 } else {
                     pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
                     pleaseTap.show();
@@ -111,6 +142,19 @@ public class Workout extends ActionBarActivity {
             }
 
         });
+        //new button end
+
+        //end button
+        wEnd.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //do something
+
+            }
+        });
+
+        //end button end
+
 
     }
 

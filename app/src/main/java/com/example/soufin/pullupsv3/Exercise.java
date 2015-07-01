@@ -1,16 +1,10 @@
 package com.example.soufin.pullupsv3;
 
 
-import android.util.Log;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import com.example.soufin.pullupsv3.Sets;
 
-/**
- * Created by Soufin on 6/26/2015.
- */
+
 public class Exercise {
 
     //public int ID;
@@ -30,7 +24,7 @@ public class Exercise {
 
     //getter
     public List<Sets> getSets() {return this._sets; }
-    // setter
+    //setter
    public void addSet(){
        Sets temp = new Sets();
        this._sets.add(temp);
@@ -62,23 +56,23 @@ public class Exercise {
         int count = -1;
         for (Sets set : this._sets){
             count++;
-            output =  "SET : " + Integer.toString(count) + " REPS : " + set.toString();
+            output =  "SET : " + Integer.toString(count) + " REPS : " + set.toNumericString();
         }
 
         return output;
     }
 
-    public ArrayList<String> setHistoryList(){
+    public ArrayList<String> getHistoryList(){
         ArrayList<String> tempList = new ArrayList<String>();
-        //historyList.add(this.toString());
+        //historyList.add(this.toNumericString());
         int count = 0;
         for (Sets set : this.getSets()) {
-            tempList.add(count, set.toString());
+            tempList.add(count, set.toNumericString());
         }
         return tempList;
 
-
     }
+
 
 
 

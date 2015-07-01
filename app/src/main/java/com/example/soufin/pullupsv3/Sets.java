@@ -1,12 +1,11 @@
 package com.example.soufin.pullupsv3;
 
-/**
- * Created by Soufin on 6/26/2015.
- */
+
 public class Sets {
 
    // private int _id;
     private int _reps = 0;
+    private int counter = 0;
 
     //constructor
     //Sets(int reps) {
@@ -31,8 +30,13 @@ public class Sets {
 
     }
 
-    public String toString() {
+    public String toNumericString() {
         return Integer.toString(_reps);
+    }
+
+    public String toString() {
+        counter++;
+        return ("Reps : " + Integer.toString(_reps));
     }
 
 }
