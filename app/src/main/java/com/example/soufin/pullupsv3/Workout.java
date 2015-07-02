@@ -1,5 +1,6 @@
 package com.example.soufin.pullupsv3;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -145,7 +146,9 @@ public class Workout extends ActionBarActivity {
         wEnd.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
+
+                Intent i = new Intent(getApplicationContext(), endWorkout.class);
+                startActivity(i);
 
             }
         });
