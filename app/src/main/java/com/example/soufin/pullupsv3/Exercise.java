@@ -23,10 +23,11 @@ public class Exercise {
     }
 
     //getter
-    public List<Sets> getSets() {return this._sets; }
+    public List<Sets> getSets() {return this._sets;}
     //setter
-   public void addSet(){
+   public void addSet(int reps){
        Sets temp = new Sets();
+       temp.setReps(reps);
        this._sets.add(temp);
    }
 
@@ -42,12 +43,16 @@ public class Exercise {
 
     }
 
-    public void updateSetAt(int index, int reps){
+    public void updateSetAt(int reps){
 
         //this._sets.get(index).setReps(reps);
-        Sets temp = this._sets.get(index);
+       /* Sets temp = this._sets.get(index);
         temp.setReps(reps);
-        this._sets.set(index, temp);
+        this._sets.set(index, temp);*/
+
+        //Sets temp = new Sets();
+        //this._sets.add(temp.setReps(reps));
+
 
     }
 
@@ -56,21 +61,41 @@ public class Exercise {
         int count = -1;
         for (Sets set : this._sets){
             count++;
-            output =  "SET : " + Integer.toString(count) + " REPS : " + set.toNumericString();
+            output =  "SET : " + Integer.toString(count) +  set.toString();
         }
 
         return output;
     }
 
-    public ArrayList<String> getHistoryList(){
+    public List<Sets> getHistoryList(){
+        List<Sets> tempList = new ArrayList<Sets>();
+        //historyList.add(this.toNumericString());
+        int count = 0;
+        for (Sets set : this.getSets()) {
+            if (set.toNumericString() != "0") {
+                tempList.add(count, set);
+            }
+        }
+
+        return tempList;
+    }
+
+    public ArrayList<String> getHistoryListTest(){
         ArrayList<String> tempList = new ArrayList<String>();
         //historyList.add(this.toNumericString());
         int count = 0;
         for (Sets set : this.getSets()) {
             tempList.add(count, set.toNumericString());
         }
+        if (!tempList.isEmpty()) {
+            tempList.remove(0); // remove first item which is zero
+        }
         return tempList;
 
+    }
+
+    public void removeAtIndex(int index) {
+        this._sets.set(index, null);
     }
 
 

@@ -35,7 +35,7 @@ public class Sets {
     }
 
     public String toString() {
-        counter++;
+       // counter++;
         return ("Reps : " + Integer.toString(_reps));
     }
 

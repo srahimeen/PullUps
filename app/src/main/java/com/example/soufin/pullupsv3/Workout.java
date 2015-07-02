@@ -23,14 +23,15 @@ public class Workout extends ActionBarActivity {
     Button wTap;
     Button wEnd;
     ListView displayHistory;
-    static int newIndex = -1;
-    int tapCount =1;
+    static int newIndex = 0;
+    int tapCount = 0;
     int[] score = new int[5];
     boolean flag = false;
     String displayTapsString;
     String displayResultString;
     ArrayList<String> tempList = new ArrayList<String>();
     Toast pleaseTap;
+    boolean firstNew = true;
 
 
     @Override
@@ -49,12 +50,6 @@ public class Workout extends ActionBarActivity {
 
 
 
-        //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, pullup.getHistoryList());
-        //displayHistory.setAdapter(historyAdapter);
-        //tempList = pullup.getHistoryList();
-        //final ListAdapter historyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, tempList);
-        //displayHistory.setAdapter(historyAdapter);
-
         final ArrayAdapter<Sets> arrayAdapter = new ArrayAdapter<Sets>(
                 this,
                 android.R.layout.simple_expandable_list_item_1,
@@ -62,8 +57,6 @@ public class Workout extends ActionBarActivity {
         );
 
        // displayHistory.setVisibility((pullup.getSets() == null) ? View.GONE : View.VISIBLE);
-
-
 
         //displayHistory.setAdapter(arrayAdapter);
 
@@ -75,13 +68,15 @@ public class Workout extends ActionBarActivity {
             public void onClick(View v) {
                 tapCount++; // increment based on number of taps
 
-                    pullup.updateSetAt(newIndex, tapCount); // add taps to current set
+                //pullup.updateSetAt(tapCount); // add taps to current set
 
                 displayTapsString = pullup.displaySets(); // shows reps inside sets
+
 
                 wTap.setText(Integer.toString(tapCount));
 
                 Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
+
 
                     // prints above log to screen
                     displayResultString = pullup.toString();
@@ -96,43 +91,48 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                //must tap in order to start a new set
-                if (tapCount > 0) {
-                    newIndex += 1;
-                    pullup.addSet();
-                    tapCount = 0;
+                //check if new is being pressed for the first time
+                if (!firstNew) {
+                    //must tap in order to start a new set
+                    if (tapCount > 0) {
+                        pullup.addSet(tapCount);
+                        tapCount = 0;
+                        displayTapsString = "NEW SET!";
+                        wTap.setText(Integer.toString(tapCount));
+
+                        newIndex++; //increment index
+                        //enable tap button
+
+                        wTap.setEnabled(true);
+
+                        //populate list
+                        // tempList.add(newIndex, pullup.getSets().toNumericString());
+                    /*for (Sets set : pullup.getSets()) {
+                        Log.v("HISTORY :",  set.toString());
+
+                    }*/
+
+                        int index = 0;
+                        for (Sets s : pullup.getSets()) {
+                            Log.v("CHECK:", (String.valueOf(index++) + ": " + s.toString()));
+                        }
+
+
+                        if (newIndex > 0) {
+                            displayHistory.setAdapter(arrayAdapter);
+                        }
+
+
+                    } else {
+                        pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
+                        pleaseTap.show();
+                    }
+                } else {
+
+                    wTap.setEnabled(true);
                     displayTapsString = "NEW SET!";
                     wTap.setText(Integer.toString(tapCount));
-
-                    //enable tap button
-                    wTap.setEnabled(true);
-
-                    //populate list
-                    // tempList.add(newIndex, pullup.getSets().toNumericString());
-                    for (String str : pullup.getHistoryList()) {
-                        Log.v("HISTORY :", str);
-
-                    }
-
-                    //int count = -1;
-                    //for (Sets sets : pullup.getSets()){
-                    //    count++;
-                    //    tempList.add(count, sets.toNumericString());
-                    //}
-
-                    //tempList.add(newIndex, pullup.toNumericString());
-
-                    displayHistory.setAdapter(arrayAdapter);
-
-                    //for (String str : tempList) {
-                    //    Log.v("TEMPLIST :", str);
-                    //}
-
-
-
-                } else {
-                    pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
-                    pleaseTap.show();
+                    firstNew = false;
                 }
 
 
