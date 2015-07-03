@@ -58,7 +58,8 @@
         android:layout_below="@+id/averageLabel"
         android:layout_toRightOf="@+id/statsLabel"
         android:layout_toEndOf="@+id/statsLabel"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:isIndicator="true"/>
 
     <Button
         android:layout_width="wrap_content"

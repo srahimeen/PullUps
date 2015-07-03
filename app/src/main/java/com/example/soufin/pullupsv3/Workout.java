@@ -15,24 +15,33 @@ import android.widget.Toast;
 import android.R.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Workout extends ActionBarActivity {
 
+    // exercise
     Exercise pullup;
+    //buttons
     Button wNew;
     Button wTap;
     Button wEnd;
+    //list
     ListView displayHistory;
+    static ArrayList<String> storeList = new ArrayList<String>();
+    // counters
     static int newIndex = 0;
     int tapCount = 0;
-    int[] score = new int[5];
-    boolean flag = false;
+    // strings
     String displayTapsString;
     String displayResultString;
-    ArrayList<String> tempList = new ArrayList<String>();
+    // toasts
     Toast pleaseTap;
+    // bools
     boolean firstNew = true;
+    boolean flag = false;
+    //end things
+
 
 
     @Override
@@ -76,7 +85,10 @@ public class Workout extends ActionBarActivity {
 
                 wTap.setText(Integer.toString(tapCount));
 
-                Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
+
+
+                //Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
+
 
 
                     // prints above log to screen
@@ -113,10 +125,11 @@ public class Workout extends ActionBarActivity {
 
                     }*/
 
+                        /*
                         int index = 0;
                         for (Sets s : pullup.getSets()) {
                             Log.v("CHECK:", (String.valueOf(index++) + ": " + s.toString()));
-                        }
+                        }*/
 
 
                         if (newIndex > 0) {
@@ -147,7 +160,23 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                // add the last taps to the current list
+                pullup.addSet(tapCount);
+
+                // have to store the list here else the last taps dont carry over to next activity
+                storeList = pullup.storeList();
+
+                // update display one last time
+                displayHistory.setAdapter(arrayAdapter);
+
+                int index = 0;
+                for (String s : pullup.storeList()) {
+                    Log.v("STORE:", (String.valueOf(index++) + ": " + s.toString()));
+                }
+
+                // switch activity and send stored list over to next activity
                 Intent i = new Intent(getApplicationContext(), endWorkout.class);
+                i.putStringArrayListExtra("storeList", storeList);
                 startActivity(i);
 
             }
