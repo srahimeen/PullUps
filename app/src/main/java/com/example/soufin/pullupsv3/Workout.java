@@ -10,12 +10,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.R.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Workout extends ActionBarActivity {
@@ -106,7 +103,7 @@ public class Workout extends ActionBarActivity {
 
                 //check if new is being pressed for the first time
                 if (!firstNew) {
-                    //must tap in order to start a new set
+                    // null check
                     if (tapCount > 0) {
                         pullup.addSet(tapCount);
                         tapCount = 0;
@@ -160,25 +157,31 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                // add the last taps to the current list
-                pullup.addSet(tapCount);
+                // null check
+                //if (tapCount > 0) {
+                    // add the last taps to the current list
+                    pullup.addSet(tapCount);
 
-                // have to store the list here else the last taps dont carry over to next activity
-                storeList = pullup.storeList();
+                    // have to store the list here else the last taps dont carry over to next activity
+                    storeList = pullup.storeList();
 
-                // update display one last time
-                displayHistory.setAdapter(arrayAdapter);
+                    // update display one last time
+                    displayHistory.setAdapter(arrayAdapter);
 
-                int index = 0;
-                for (String s : pullup.storeList()) {
-                    Log.v("STORE:", (String.valueOf(index++) + ": " + s.toString()));
-                }
+                    int index = 0;
+                    for (String s : pullup.storeList()) {
+                        Log.v("STORE:", (String.valueOf(index++) + ": " + s.toString()));
+                    }
 
-                // switch activity and send stored list over to next activity
-                Intent i = new Intent(getApplicationContext(), endWorkout.class);
-                i.putStringArrayListExtra("storeList", storeList);
-                startActivity(i);
+                    // switch activity and send stored list over to next activity
+                    Intent i = new Intent(getApplicationContext(), endWorkout.class);
+                    i.putStringArrayListExtra("storeList", storeList);
+                    startActivity(i);
 
+                //} else {
+                 //   pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
+                  //  pleaseTap.show();
+                //}
             }
         });
 

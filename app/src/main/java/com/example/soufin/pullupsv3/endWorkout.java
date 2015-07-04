@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.soufin.pullupsv3.Workout;
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import org.w3c.dom.Text;
 
@@ -47,6 +52,7 @@ public class endWorkout extends ActionBarActivity {
         eSetsValue = (TextView)findViewById(R.id.setsValue);
         eAverageValue = (TextView)findViewById(R.id.averageValue);
         eScore = (RatingBar)findViewById(R.id.rating);
+        eBack = (Button)findViewById(R.id.backButton);
 
 
         // receive list from previous activity
@@ -59,17 +65,27 @@ public class endWorkout extends ActionBarActivity {
         }
 
 
+        // set total reps
         for (String str : inputList){
             setCount++;
             totalReps += Integer.parseInt(str);
         }
-
+        // set average
         average = totalReps/setCount;
-
+        // display everything
         eSetsValue.setText(Integer.toString(setCount));
         eTotalRepsValue.setText(Integer.toString(totalReps));
         eAverageValue.setText(Double.toString(average));
-        eScore.setRating((float)average);
+        eScore.setRating((float) average);
+
+
+
+        // Parse Storage
+        ParseObject testObject = new ParseObject("TestOne");
+        testObject.put("Device", ParseInstallation.getCurrentInstallation());
+        testObject.put("Reps", inputList);
+        testObject.saveInBackground();
+
 
 
     }
