@@ -81,7 +81,7 @@ public class endWorkout extends ActionBarActivity {
 
 
         // Parse Storage
-        ParseObject testObject = new ParseObject("TestOne");
+        ParseObject testObject = new ParseObject("Workout");
         testObject.put("Device", ParseInstallation.getCurrentInstallation());
         testObject.put("Reps", inputList);
         testObject.saveInBackground();
