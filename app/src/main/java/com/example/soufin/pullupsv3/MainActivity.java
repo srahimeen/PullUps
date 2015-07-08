@@ -6,31 +6,69 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private Button mNew; //declare button for newWorkoutButton
+    private ListView displayList;
+    List<ParseObject> store = new ArrayList<ParseObject>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        displayList = (ListView)findViewById(R.id.displayList);
 
         mNew = (Button)findViewById(R.id.mainNewButton);
 
         mNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), Workout.class);
+                Intent i = new Intent(getApplicationContext(), ParseListActivity.class); //change to workout.class
                 startActivity(i);
             }
         });
 
+        final ArrayAdapter<ParseObject> arrayAdapter = new ArrayAdapter<ParseObject>(
+                this,
+                android.R.layout.simple_expandable_list_item_1,
+                store
+        );
+
+        arrayAdapter.notifyDataSetChanged();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Workout");
+        query.whereEqualTo("Device", ParseInstallation.getCurrentInstallation());
+        query.setLimit(100);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> dataList, ParseException e) {
+
+                // logic here
+                store.addAll(dataList);
+
+
+
+            }
+        });
+
+        displayList.setAdapter(arrayAdapter);
 
     }
 
