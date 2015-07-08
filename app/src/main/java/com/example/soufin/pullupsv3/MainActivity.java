@@ -1,12 +1,15 @@
 package com.example.soufin.pullupsv3;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,14 +24,29 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 
 public class MainActivity extends ActionBarActivity {
 
     private Button mNew; //declare button for newWorkoutButton
-    private ListView displayList;
-    List<String> store = new ArrayList<String>();
-    List<ParseObject> storeP = new ArrayList<ParseObject>();
-    String result = "";
+    private Button mHistory;
+
 
 
     @Override
@@ -36,7 +54,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        displayList = (ListView)findViewById(R.id.displayList);
+
+
 
         //*****************DONT MESS WITH THIS*********************************
 
@@ -50,43 +69,24 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        //*****************DONT MESS WITH THIS*********************************
-        //adapter
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_expandable_list_item_1,
-                store
-        );
+        mHistory = (Button)findViewById(R.id.historyButton);
 
-        arrayAdapter.notifyDataSetChanged();
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Workout");
-        query.whereEqualTo("Device", ParseInstallation.getCurrentInstallation());
-        query.setLimit(100);
-        query.findInBackground(new FindCallback<ParseObject>() {
+        mHistory.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void done(List<ParseObject> list, ParseException e) {
-                storeP.addAll(list);
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ParseManager.class); //change to workout.class
+                startActivity(i);
             }
         });
 
-        //parse obj to str
-        for (ParseObject obj : storeP){
-            store.add(obj.toString());
-            Log.v("THIS: ", obj.toString());
-        }
 
-        /*query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
+        //*****************DONT MESS WITH THIS*********************************
 
-                String status = object.getString("newStatus");
-            }
-        });*/
-
-        displayList.setAdapter(arrayAdapter);
 
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

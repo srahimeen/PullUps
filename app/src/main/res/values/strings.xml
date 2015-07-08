@@ -6,4 +6,5 @@
     <string name="title_activity_workout">Workout</string>
     <string name="title_activity_end_workout">endWorkout</string>
     <string name="title_activity_parse_list">ParseListActivity</string>
+    <string name="repslabel">"Reps : "</string>
 </resources>

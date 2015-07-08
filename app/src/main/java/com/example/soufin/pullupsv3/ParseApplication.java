@@ -3,7 +3,9 @@ package com.example.soufin.pullupsv3;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 
 /**
@@ -20,5 +22,13 @@ public class ParseApplication extends Application {
         //ParseObject.registerSubclass(ParseWorkout.class);
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "MeMuuS9hfDM3LvnqettvWmt9alcr0qLwZIuDqvpw", "bCEERDTH8VrFpI0hD8pR5SXSUQmrlpB9oK8DWYMQ");
+
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+
+        // If you would like all objects to be private by default, remove this line.
+        defaultACL.setPublicReadAccess(true);
+
+        ParseACL.setDefaultACL(defaultACL, true);
     }
 }

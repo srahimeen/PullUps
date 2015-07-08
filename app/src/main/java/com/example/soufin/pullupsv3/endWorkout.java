@@ -1,5 +1,6 @@
 package com.example.soufin.pullupsv3;
 
+import android.content.Intent;
 import android.media.Rating;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -103,6 +104,13 @@ public class endWorkout extends ActionBarActivity {
         testObject.put("Average", average);
         testObject.saveInBackground();
 
+        eBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class); //change to workout.class
+                startActivity(i);
+            }
+        });
 
 
     }
