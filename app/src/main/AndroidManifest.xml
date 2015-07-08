@@ -28,10 +28,6 @@
             android:name=".endWorkout"
             android:label="@string/title_activity_end_workout" >
         </activity>
-        <activity
-            android:name=".ParseListActivity"
-            android:label="@string/title_activity_parse_list" >
-        </activity>
     </application>
 
 </manifest>

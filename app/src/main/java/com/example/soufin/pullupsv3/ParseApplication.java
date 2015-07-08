@@ -17,7 +17,7 @@ public class ParseApplication extends Application {
         super.onCreate();
 
         //ParseCrashReporting.enable(this);
-        ParseObject.registerSubclass(ParseWorkout.class);
+        //ParseObject.registerSubclass(ParseWorkout.class);
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, "MeMuuS9hfDM3LvnqettvWmt9alcr0qLwZIuDqvpw", "bCEERDTH8VrFpI0hD8pR5SXSUQmrlpB9oK8DWYMQ");
     }

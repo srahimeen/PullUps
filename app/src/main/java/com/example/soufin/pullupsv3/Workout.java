@@ -25,7 +25,7 @@ public class Workout extends ActionBarActivity {
     Button wEnd;
     //list
     ListView displayHistory;
-    static ArrayList<String> storeList = new ArrayList<String>();
+    static ArrayList<Integer> storeList = new ArrayList<Integer>();
     // counters
     static int newIndex = 0;
     int tapCount = 0;
@@ -169,13 +169,13 @@ public class Workout extends ActionBarActivity {
                     displayHistory.setAdapter(arrayAdapter);
 
                     int index = 0;
-                    for (String s : pullup.storeList()) {
-                        Log.v("STORE:", (String.valueOf(index++) + ": " + s.toString()));
+                    for (int i : pullup.storeList()) {
+                        Log.v("STORE:", (String.valueOf(index++) + ": " + Integer.toString(i)));
                     }
 
                     // switch activity and send stored list over to next activity
                     Intent i = new Intent(getApplicationContext(), endWorkout.class);
-                    i.putStringArrayListExtra("storeList", storeList);
+                    i.putIntegerArrayListExtra("storeList", storeList);
                     startActivity(i);
 
                 //} else {

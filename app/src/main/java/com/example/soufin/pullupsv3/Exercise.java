@@ -67,11 +67,11 @@ public class Exercise {
         return output;
     }
 
-    public ArrayList<String> storeList(){
-        ArrayList<String> tempList = new ArrayList<String>();
+    public ArrayList<Integer> storeList(){
+        ArrayList<Integer> tempList = new ArrayList<Integer>();
         //historyList.add(this.toNumericString());
         for (Sets set : this.getSets()) {
-                tempList.add(set.toNumericString());
+                tempList.add(set.toInteger());
         }
 
         return tempList;

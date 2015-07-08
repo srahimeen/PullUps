@@ -3,6 +3,7 @@ package com.example.soufin.pullupsv3;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +26,9 @@ public class MainActivity extends ActionBarActivity {
 
     private Button mNew; //declare button for newWorkoutButton
     private ListView displayList;
-    List<ParseObject> store = new ArrayList<ParseObject>();
+    List<String> store = new ArrayList<String>();
+    List<ParseObject> storeP = new ArrayList<ParseObject>();
+    String result = "";
 
 
     @Override
@@ -35,17 +38,21 @@ public class MainActivity extends ActionBarActivity {
 
         displayList = (ListView)findViewById(R.id.displayList);
 
+        //*****************DONT MESS WITH THIS*********************************
+
         mNew = (Button)findViewById(R.id.mainNewButton);
 
         mNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ParseListActivity.class); //change to workout.class
+                Intent i = new Intent(getApplicationContext(), Workout.class); //change to workout.class
                 startActivity(i);
             }
         });
 
-        final ArrayAdapter<ParseObject> arrayAdapter = new ArrayAdapter<ParseObject>(
+        //*****************DONT MESS WITH THIS*********************************
+        //adapter
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_expandable_list_item_1,
                 store
@@ -58,15 +65,24 @@ public class MainActivity extends ActionBarActivity {
         query.setLimit(100);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(List<ParseObject> dataList, ParseException e) {
-
-                // logic here
-                store.addAll(dataList);
-
-
-
+            public void done(List<ParseObject> list, ParseException e) {
+                storeP.addAll(list);
             }
         });
+
+        //parse obj to str
+        for (ParseObject obj : storeP){
+            store.add(obj.toString());
+            Log.v("THIS: ", obj.toString());
+        }
+
+        /*query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+
+                String status = object.getString("newStatus");
+            }
+        });*/
 
         displayList.setAdapter(arrayAdapter);
 

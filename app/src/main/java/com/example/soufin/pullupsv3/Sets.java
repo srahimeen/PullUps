@@ -34,6 +34,10 @@ public class Sets {
         return Integer.toString(_reps);
     }
 
+    public int toInteger() {
+        return this._reps;
+    }
+
     public String toString() {
        // counter++;
         return ("Reps : " + Integer.toString(_reps));

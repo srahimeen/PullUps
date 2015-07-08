@@ -40,7 +40,7 @@ public class endWorkout extends ActionBarActivity {
     int totalReps = 0;
     double average = 0;
     // lists
-    ArrayList<String> inputList = new ArrayList<String>();
+    ArrayList<Integer> inputList = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +56,19 @@ public class endWorkout extends ActionBarActivity {
 
 
         // receive list from previous activity
-        inputList = getIntent().getStringArrayListExtra("storeList");
+        inputList = getIntent().getIntegerArrayListExtra("storeList");
 
         // debug
         int index = 0;
-        for (String s : inputList) {
-            Log.v("STORE:", (String.valueOf(index++) + ": " + s.toString()));
+        for (int i : inputList) {
+            Log.v("STORE:", (String.valueOf(index++) + ": " + Integer.toString(i)));
         }
 
 
         // set total reps
-        for (String str : inputList){
+        for (Integer i : inputList){
             setCount++;
-            totalReps += Integer.parseInt(str);
+            totalReps += i;
         }
         // set average
         average = totalReps/setCount;
@@ -78,12 +78,29 @@ public class endWorkout extends ActionBarActivity {
         eAverageValue.setText(Double.toString(average));
         eScore.setRating((float) average);
 
+        //convert from list of ints to string
+        String result = "";
+        boolean first = true;
+        for(Integer i : inputList){
+            if(first){
+                result += Integer.toString(i);
+                first = false;
+            } else {
+                result += "/" + Integer.toString(i);
+            }
+
+        }
+
+        // log test
+        Log.v("RESULT: ", result);
 
 
         // Parse Storage
-        ParseObject testObject = new ParseObject("Workout");
+        ParseObject testObject = ParseObject.create("Workout");
         testObject.put("Device", ParseInstallation.getCurrentInstallation());
-        testObject.put("Reps", inputList);
+        testObject.put("RepsInt", inputList);
+        testObject.put("Result", result);
+        testObject.put("Average", average);
         testObject.saveInBackground();
 
 
