@@ -36,7 +36,8 @@
         android:id="@+id/tapButton"
         android:layout_above="@+id/newSetButton"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/tap_button"/>
+        android:background="@drawable/tap_button"
+        android:textSize="20sp"/>
 
     <ListView
         android:layout_width="wrap_content"

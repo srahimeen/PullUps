@@ -37,6 +37,9 @@ public class Workout extends ActionBarActivity {
     // bools
     boolean firstNew = true;
     boolean flag = false;
+    //constants
+    int MAX_SETS = 15;
+    int MAX_REPS = 25;
     //end things
 
 
@@ -73,25 +76,25 @@ public class Workout extends ActionBarActivity {
         wTap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tapCount++; // increment based on number of taps
+                if (tapCount < MAX_REPS) {
+                    tapCount++; // increment based on number of taps
 
-                //pullup.updateSetAt(tapCount); // add taps to current set
+                    //pullup.updateSetAt(tapCount); // add taps to current set
 
-                displayTapsString = pullup.displaySets(); // shows reps inside sets
-
-
-                wTap.setText(Integer.toString(tapCount));
+                    displayTapsString = pullup.displaySets(); // shows reps inside sets
 
 
+                    wTap.setText(Integer.toString(tapCount));
 
-                //Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
 
+                    //Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
 
 
                     // prints above log to screen
                     displayResultString = pullup.toString();
 
 
+                }
             }
         });
         //tap button end
@@ -101,22 +104,23 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                //check if new is being pressed for the first time
-                if (!firstNew) {
-                    // null check
-                    if (tapCount > 0) {
-                        pullup.addSet(tapCount);
-                        tapCount = 0;
-                        displayTapsString = "NEW SET!";
-                        wTap.setText(Integer.toString(tapCount));
+                if (newIndex < MAX_SETS) {
+                    //check if new is being pressed for the first time
+                    if (!firstNew) {
+                        // null check
+                        if (tapCount > 0) {
+                            pullup.addSet(tapCount);
+                            tapCount = 0;
+                            displayTapsString = "NEW SET!";
+                            wTap.setText(Integer.toString(tapCount));
 
-                        newIndex++; //increment index
-                        //enable tap button
+                            newIndex++; //increment index
+                            //enable tap button
 
-                        wTap.setEnabled(true);
+                            wTap.setEnabled(true);
 
-                        //populate list
-                        // tempList.add(newIndex, pullup.getSets().toNumericString());
+                            //populate list
+                            // tempList.add(newIndex, pullup.getSets().toNumericString());
                     /*for (Sets set : pullup.getSets()) {
                         Log.v("HISTORY :",  set.toString());
 
@@ -129,21 +133,22 @@ public class Workout extends ActionBarActivity {
                         }*/
 
 
-                        if (newIndex > 0) {
-                            displayHistory.setAdapter(arrayAdapter);
+                            if (newIndex > 0) {
+                                displayHistory.setAdapter(arrayAdapter);
+                            }
+
+
+                        } else {
+                            pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
+                            pleaseTap.show();
                         }
-
-
                     } else {
-                        pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
-                        pleaseTap.show();
-                    }
-                } else {
 
-                    wTap.setEnabled(true);
-                    displayTapsString = "NEW SET!";
-                    wTap.setText(Integer.toString(tapCount));
-                    firstNew = false;
+                        wTap.setEnabled(true);
+                        displayTapsString = "NEW SET!";
+                        wTap.setText(Integer.toString(tapCount));
+                        firstNew = false;
+                    }
                 }
 
 
