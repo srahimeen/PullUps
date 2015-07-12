@@ -36,10 +36,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.RelativeLayout;
 
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+
+
 
 
 public class MainActivity extends ActionBarActivity {
@@ -52,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_p);
 
 
 
@@ -61,6 +64,7 @@ public class MainActivity extends ActionBarActivity {
 
         mNew = (Button)findViewById(R.id.mainNewButton);
 
+
         mNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +72,8 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(i);
             }
         });
+
+
 
         mHistory = (Button)findViewById(R.id.historyButton);
 

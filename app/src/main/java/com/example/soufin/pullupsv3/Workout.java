@@ -44,7 +44,7 @@ public class Workout extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workout);
+        setContentView(R.layout.activity_workout_p);
 
         pullup = new Exercise();
         pullup.setName("Pullup");
