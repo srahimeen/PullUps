@@ -62,12 +62,13 @@
         android:isIndicator="true"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BACK"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:text=""
         android:id="@+id/backButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/done_button"/>
 
     <TextView
         android:layout_width="wrap_content"

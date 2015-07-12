@@ -1,6 +1,9 @@
 package com.example.soufin.pullupsv3;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.Rating;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -115,6 +118,11 @@ public class endWorkout extends ActionBarActivity {
         //okay
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing on back pressed
     }
 
     @Override
