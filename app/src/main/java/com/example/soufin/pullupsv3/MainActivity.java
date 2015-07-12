@@ -92,7 +92,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
+    @Override
+    public void onBackPressed() {
+        // do nothing on back pressed
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
