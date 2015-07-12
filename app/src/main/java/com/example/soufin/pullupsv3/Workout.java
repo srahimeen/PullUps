@@ -29,6 +29,7 @@ public class Workout extends ActionBarActivity {
     // counters
     static int newIndex = 0;
     int tapCount = 0;
+    int endCount = 0;
     // strings
     String displayTapsString;
     String displayResultString;
@@ -40,6 +41,7 @@ public class Workout extends ActionBarActivity {
     //constants
     int MAX_SETS = 15;
     int MAX_REPS = 25;
+    int MIN_SETS = 1;
     //end things
 
 
@@ -162,10 +164,14 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                endCount++;
+
                 // null check
                 //if (tapCount > 0) {
                     // add the last taps to the current list
+                if (tapCount > 0) {
                     pullup.addSet(tapCount);
+                }
 
                     // have to store the list here else the last taps dont carry over to next activity
                     storeList = pullup.storeList();
@@ -178,10 +184,19 @@ public class Workout extends ActionBarActivity {
                         Log.v("STORE:", (String.valueOf(index++) + ": " + Integer.toString(i)));
                     }
 
+                if (newIndex > MIN_SETS || endCount > 1) {
+
                     // switch activity and send stored list over to next activity
                     Intent i = new Intent(getApplicationContext(), endWorkout.class);
                     i.putIntegerArrayListExtra("storeList", storeList);
                     startActivity(i);
+                } else {
+                    //toast user
+                    tapCount = 0;
+                    wTap.setText(Integer.toString(tapCount));
+                    Toast minSets = Toast.makeText(getApplicationContext(), "Just one set? You can do more! + more sets!", Toast.LENGTH_LONG);
+                    minSets.show();
+                }
 
                 //} else {
                  //   pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
