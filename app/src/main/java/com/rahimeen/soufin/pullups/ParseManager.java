@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -130,12 +131,17 @@ public class ParseManager extends ActionBarActivity {
         }
     }
 
+   // dont overide back button cause you want to go back a screen
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            //do nothing
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

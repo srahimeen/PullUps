@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -110,6 +111,17 @@ public class endWorkout extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         // do nothing on back pressed
+        this.moveTaskToBack(true); // "close" app on back
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            //do nothing
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /*@Override

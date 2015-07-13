@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -39,7 +40,7 @@ public class Workout extends ActionBarActivity {
     boolean flag = false;
     //constants
     int MAX_SETS = 15;
-    int MAX_REPS = 25;
+    int MAX_REPS = 50;
     int MIN_SETS = 1;
     //end things
 
@@ -95,6 +96,12 @@ public class Workout extends ActionBarActivity {
                     displayResultString = pullup.toString();
 
 
+                }
+
+                // toast for max rep hit
+                if (tapCount == MAX_REPS){
+                    Toast maxReps = Toast.makeText(getApplicationContext(), "Maximum reps reached. You should rest!", Toast.LENGTH_LONG);
+                    maxReps.show();
                 }
             }
         });
@@ -152,6 +159,12 @@ public class Workout extends ActionBarActivity {
                     }
                 }
 
+                // toast for max hit
+                if (newIndex == MAX_SETS){
+                    Toast maxSets = Toast.makeText(getApplicationContext(), "Maximum sets reached. You should rest!", Toast.LENGTH_LONG);
+                    maxSets.show();
+                }
+
 
             }
 
@@ -163,7 +176,7 @@ public class Workout extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                endCount++;
+                endCount++; // counts end button so that even if you have min sets you can press end again to do just one set
 
                 // null check
                 //if (tapCount > 0) {
@@ -212,6 +225,17 @@ public class Workout extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         // do nothing on back pressed
+        this.moveTaskToBack(true); // "close" app on back
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            //do nothing
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 
