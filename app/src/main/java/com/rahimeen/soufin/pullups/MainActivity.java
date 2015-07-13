@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -21,8 +22,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_p);
 
-
-
+        // display pullup image
+        ImageView img= (ImageView) findViewById(R.id.imageView);
+        img.setImageResource(R.drawable.pullupimg);
 
         //*****************DONT MESS WITH THIS*********************************
 
