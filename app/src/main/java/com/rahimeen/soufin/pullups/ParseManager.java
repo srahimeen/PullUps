@@ -1,4 +1,4 @@
-package com.example.soufin.pullupsv3;
+package com.rahimeen.soufin.pullups;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -14,33 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import java.util.List;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
 
 public class ParseManager extends ActionBarActivity {
@@ -51,6 +32,10 @@ public class ParseManager extends ActionBarActivity {
     List<ParseObject> ob;
     ProgressDialog mProgressDialog;
     ArrayAdapter<String> adapter;
+
+    //parse information in case new class is made
+    String parseClass = "Workout";
+    String parseDisplay = "Result";
 
 
 
@@ -100,7 +85,7 @@ public class ParseManager extends ActionBarActivity {
         @Override
         protected Void doInBackground(Void... params) {
             // Locate the class table named "Workout" in Parse.com
-            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Workout");
+            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(parseClass);
             query.whereEqualTo("Device", ParseInstallation.getCurrentInstallation()); // validation for current device
             query.orderByDescending("_created_at");
             try {
@@ -121,7 +106,7 @@ public class ParseManager extends ActionBarActivity {
                     R.layout.listview_item);
             // Retrieve object "name" from Parse.com database
             for (ParseObject workout : ob) {
-                adapter.add((String) workout.get("Result"));
+                adapter.add((String) workout.get(parseDisplay));
             }
             // Binds the Adapter to the ListView
             listview.setAdapter(adapter);
@@ -136,7 +121,7 @@ public class ParseManager extends ActionBarActivity {
                     Intent i = new Intent(ParseManager.this,
                             SingleItemView.class);
                     // Pass data "name" followed by the position
-                    i.putExtra("Result", ob.get(position).getString("Result")
+                    i.putExtra("Result", ob.get(position).getString(parseDisplay)
                             .toString());
                     // Open SingleItemView.java Activity
                     startActivity(i);

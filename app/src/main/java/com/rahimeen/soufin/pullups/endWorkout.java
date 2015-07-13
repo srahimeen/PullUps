@@ -1,32 +1,19 @@
-package com.example.soufin.pullupsv3;
+package com.rahimeen.soufin.pullups;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.media.Rating;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.soufin.pullupsv3.Workout;
-import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 
 public class endWorkout extends ActionBarActivity {
@@ -125,14 +112,14 @@ public class endWorkout extends ActionBarActivity {
         // do nothing on back pressed
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_end_workout, menu);
         return true;
 
 
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

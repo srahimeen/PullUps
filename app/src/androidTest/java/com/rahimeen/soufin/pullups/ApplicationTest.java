@@ -1,4 +1,4 @@
-package com.example.soufin.pullupsv3;
+package com.rahimeen.soufin.pullups;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

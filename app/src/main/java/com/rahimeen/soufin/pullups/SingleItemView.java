@@ -1,4 +1,4 @@
-package com.example.soufin.pullupsv3;
+package com.rahimeen.soufin.pullups;
 
 /**
  * Created by Soufin on 7/8/2015.

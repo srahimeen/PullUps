@@ -1,10 +1,9 @@
-package com.example.soufin.pullupsv3;
+package com.rahimeen.soufin.pullups;
 
 import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 
