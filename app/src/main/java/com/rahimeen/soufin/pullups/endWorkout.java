@@ -62,8 +62,14 @@ public class endWorkout extends ActionBarActivity {
             setCount++;
             totalReps += i;
         }
+
         // set average
-        average = totalReps/setCount;
+        if (setCount>0) {
+            average = totalReps / setCount;
+        } else {
+            average = 0;
+        }
+
         // display everything
         eSetsValue.setText(Integer.toString(setCount));
         eTotalRepsValue.setText(Integer.toString(totalReps));
@@ -98,7 +104,7 @@ public class endWorkout extends ActionBarActivity {
         eBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class); //change to workout.class
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });

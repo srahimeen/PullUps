@@ -178,42 +178,57 @@ public class Workout extends ActionBarActivity {
 
                 endCount++; // counts end button so that even if you have min sets you can press end again to do just one set
 
-                // null check
-                //if (tapCount > 0) {
+                if (newIndex > 0) {
+
+
+
+                    // null check
+                    //if (tapCount > 0) {
                     // add the last taps to the current list
-                if (tapCount > 0) {
-                    pullup.addSet(tapCount);
-                }
+                    if (tapCount > 0) {
+                        pullup.addSet(tapCount);
+                    }
+
 
                     // have to store the list here else the last taps dont carry over to next activity
                     storeList = pullup.storeList();
 
+
                     // update display one last time
                     displayHistory.setAdapter(arrayAdapter);
 
-                    int index = 0;
-                    for (int i : pullup.storeList()) {
-                        Log.v("STORE:", (String.valueOf(index++) + ": " + Integer.toString(i)));
+                /*int index = 0;
+                for (int i : pullup.storeList()) {
+                    Log.v("STORE:", (String.valueOf(index++) + ": " + Integer.toString(i)));
+                }*/
+
+                    if (newIndex > MIN_SETS || endCount > 1) {
+
+                        // switch activity and send stored list over to next activity
+                        Intent i = new Intent(getApplicationContext(), endWorkout.class);
+                        i.putIntegerArrayListExtra("storeList", storeList);
+                        startActivity(i);
+                    } else {
+                        //toast user
+                        tapCount = 0;
+                        wTap.setText(Integer.toString(tapCount));
+                        //Toast minSets = Toast.makeText(getApplicationContext(), "Just one set? You can do more! + more sets!", Toast.LENGTH_LONG);
+                        //minSets.show();
                     }
 
-                if (newIndex > MIN_SETS || endCount > 1) {
+                    //} else {
+                    //   pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
+                    //  pleaseTap.show();
+                    //}
 
-                    // switch activity and send stored list over to next activity
-                    Intent i = new Intent(getApplicationContext(), endWorkout.class);
-                    i.putIntegerArrayListExtra("storeList", storeList);
-                    startActivity(i);
+                    newIndex = 0; // reset newindex for validation
+
                 } else {
-                    //toast user
-                    tapCount = 0;
-                    wTap.setText(Integer.toString(tapCount));
-                    Toast minSets = Toast.makeText(getApplicationContext(), "Just one set? You can do more! + more sets!", Toast.LENGTH_LONG);
-                    minSets.show();
-                }
 
-                //} else {
-                 //   pleaseTap = Toast.makeText(getApplicationContext(), "Please tap!", Toast.LENGTH_SHORT);
-                  //  pleaseTap.show();
-                //}
+                    Toast noSets = Toast.makeText(getApplicationContext(), "You need to do at least one set. Press + to add your set!", Toast.LENGTH_LONG);
+                    noSets.show();
+
+                }
             }
         });
 

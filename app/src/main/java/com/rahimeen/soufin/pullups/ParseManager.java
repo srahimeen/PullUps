@@ -50,21 +50,6 @@ public class ParseManager extends ActionBarActivity {
 
 
 
-        //*****************DONT MESS WITH THIS*********************************
-        /*
-        mNew = (Button)findViewById(R.id.mainNewButton);
-
-        mNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), Workout.class); //change to workout.class
-                startActivity(i);
-            }
-        });
-        */
-        //*****************DONT MESS WITH THIS*********************************
-
-
     }
 
     // RemoteDataTask AsyncTask
