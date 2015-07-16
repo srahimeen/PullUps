@@ -29,7 +29,7 @@
             android:label="@string/title_activity_workout" >
         </activity>
         <activity
-            android:name="com.rahimeen.soufin.pullups.endWorkout"
+            android:name="com.rahimeen.soufin.pullups.EndWorkout"
             android:label="@string/title_activity_end_workout" >
         </activity>
 

@@ -205,7 +205,7 @@ public class Workout extends ActionBarActivity {
                     if (newIndex > MIN_SETS || endCount > 1) {
 
                         // switch activity and send stored list over to next activity
-                        Intent i = new Intent(getApplicationContext(), endWorkout.class);
+                        Intent i = new Intent(getApplicationContext(), EndWorkout.class);
                         i.putIntegerArrayListExtra("storeList", storeList);
                         startActivity(i);
                     } else {
