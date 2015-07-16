@@ -17,7 +17,7 @@ import com.parse.ParseObject;
 import java.util.ArrayList;
 
 
-public class endWorkout extends ActionBarActivity {
+public class EndWorkout extends ActionBarActivity {
 
     //buttons
     Button eBack;
