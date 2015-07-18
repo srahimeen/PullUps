@@ -43,19 +43,6 @@ public class Exercise {
 
     }
 
-    public void updateSetAt(int reps){
-
-        //this._sets.get(index).setReps(reps);
-       /* Sets temp = this._sets.get(index);
-        temp.setReps(reps);
-        this._sets.set(index, temp);*/
-
-        //Sets temp = new Sets();
-        //this._sets.add(temp.setReps(reps));
-
-
-    }
-
     public String toString() {
         String output = "Empty";
         int count = -1;
@@ -77,6 +64,7 @@ public class Exercise {
         return tempList;
     }
 
+    // this is a useless method
     public ArrayList<String> getHistoryListTest(){
         ArrayList<String> tempList = new ArrayList<String>();
         //historyList.add(this.toNumericString());

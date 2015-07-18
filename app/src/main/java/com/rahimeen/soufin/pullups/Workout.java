@@ -91,10 +91,8 @@ public class Workout extends ActionBarActivity {
 
                     //Log.v("TRACK :", pullup.toString() + " tapCount : " + tapCount);
 
-
                     // prints above log to screen
                     displayResultString = pullup.toString();
-
 
                 }
 
