@@ -20,7 +20,7 @@ public class ParseApplication extends Application {
         //ParseCrashReporting.enable(this); okok
         //ParseObject.registerSubclass(ParseWorkout.class);
         Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "MeMuuS9hfDM3LvnqettvWmt9alcr0qLwZIuDqvpw", "bCEERDTH8VrFpI0hD8pR5SXSUQmrlpB9oK8DWYMQ");
+        Parse.initialize(this, "xoxo", "xoxo");
 
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
