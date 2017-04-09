@@ -5,7 +5,7 @@ PullUps! is an app that allows the user to track their pull up progression, acti
 PullUps! is available for free on the [Google Play Store](https://play.google.com/store/apps/details?id=com.rahimeen.soufin.pullups).
 
 ### Notice
-Since Parse Cloud Services is scheduled to cease operations on January 28, 2017, the application will stop functioning on from that date onwards. A migration to Parse Server is not planned as of right now.
+Since Parse Cloud Services is scheduled to cease operations on January 28, 2017, the application will stop functioning from that date onwards. A migration to Parse Server is not planned as of right now. If you are interested in undertaking a migration, please see the instructions on contributing.
 
 ### Screenshots
 <img src="https://lh3.googleusercontent.com/sKM_wMyyhawIaeNilm7SD8Q8mYmagbTff6v3W3gFeGaGyeXuqF42wXV_lep4nYaa_H-K=h900-rw" width="263px" height="420px" /> <img src="https://lh3.googleusercontent.com/vomnkm7h0Shd5VgWVYaim6QoJba_Lr0q1nwCY3dCn6JhBEtFIkaQzV3jz73flK7ViUA=h900-rw" width="263px" height="420px" />
